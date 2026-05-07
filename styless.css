@@ -1,0 +1,156 @@
+@import url('https://fonts.cdnfonts.com/css/cooper-std');
+
+/* ── ROOT PALETTE ── */
+:root {
+    --brown:      #3b2412;
+    --orange:     #c85a1a;
+    --gold:       #d4a017;
+    --cream:      #f2e8d5;
+    --card-bg:    #f5edda;
+    --board-bg:   #7a3e1a;
+}
+
+/* ── BODY & BOARD ── */
+body {
+    margin: 0;
+    font-family: 'Cooper Std', 'Cooper Black', Georgia, serif;
+    background-color: var(--board-bg);
+    /* corkboard grid lines */
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 39px,
+            rgba(0,0,0,0.08) 40px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 39px,
+            rgba(0,0,0,0.06) 40px
+        );
+    cursor: crosshair;
+}
+
+#board {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+/* ── CARDS ── */
+.card {
+    position: absolute;
+    width: 180px;
+    background: var(--card-bg);
+    padding: 10px 10px 36px;
+    cursor: grab;
+    border: 4px solid var(--brown);
+    
+    transition: box-shadow 0.2s ease;
+}
+
+.card:active {
+    cursor: grabbing;
+    
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    filter: sepia(25%) contrast(1.05) saturate(0.9);
+}
+
+.caption {
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: var(--brown);
+    margin: 10px 0 0;
+}
+
+/* ── DRAWER ── */
+.drawer {
+    background: var(--brown);
+    color: var(--cream);
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.drawer p {
+    margin: 4px 0;
+}
+
+.drawer.open {
+    max-height: 120px;
+    padding: 8px 10px;
+}
+
+/* ── MENU ── */
+#menu {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    background: var(--brown);
+    color: var(--cream);
+    padding: 22px 20px;
+    width: 190px;
+    z-index: 100;
+    border: 3px solid var(--gold);
+    box-shadow: 5px 5px 0px var(--orange);
+    transform: rotate(-1.5deg);
+    cursor: default;
+}
+
+#menu-title {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    line-height: 1.3;
+}
+
+#menu-title span:first-child {
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 3px;
+}
+
+#menu-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+#menu-links a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+#menu-links a:hover {
+    color: var(--cream);
+    text-decoration: underline;
+}
+
+/* ── EXPANDED STATE ── */
+.card.expanded {
+    width: 340px;
+}
+
+.card.expanded img {
+    height: 380px;
+    filter: sepia(15%) contrast(1.05) saturate(1);
+}
